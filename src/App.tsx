@@ -1,26 +1,28 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import "./global/styles/styles.css"
+
+import { useState } from "react"
+import { Route, Switch } from "react-router-dom"
+
+import Login from "./pages/Login"
+import Profile from "./pages/Profile"
+import Start from "./pages/Start"
 
 function App() {
+  const [hasAuth, setAuth] = useState(false)
+  const [credentials, setCredentials] = useState()
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="container">
+      <Switch>
+        <Route exact path="/" component={Start} />
+        <Route
+          path="/login"
+          render={(props) => <Login {...props} onLogin={() => setAuth(true)} />}
+        />
+        <Route path="/profile" component={Profile} />
+      </Switch>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App

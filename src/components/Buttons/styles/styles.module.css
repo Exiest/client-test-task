@@ -1,0 +1,16 @@
+.textButton {
+    outline: none;
+    border: none;
+
+    color: #fff;
+
+    line-height: 16px;
+
+    font-size: 20px;
+    font-family: inherit;
+    font-weight: 500;
+
+    background: transparent;
+
+    cursor: pointer;
+}
