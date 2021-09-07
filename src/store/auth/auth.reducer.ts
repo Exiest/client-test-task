@@ -1,7 +1,7 @@
 import ActionType from "./auth.actions"
 import Types, { AuthReducerType } from "./auth.types"
 
-const initialState = {
+const initialState: AuthReducerType = {
   hasAuth: false,
   user: null,
 }

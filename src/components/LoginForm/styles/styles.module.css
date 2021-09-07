@@ -1,0 +1,123 @@
+.wrap {
+  width: 327px;
+
+  margin: 80px 0;
+}
+
+.formBody {
+  width: 100%;
+
+  border: 1px solid #1B1D22;
+  border-radius: 8px;
+
+  background-color: #FFFFFF;
+
+  box-shadow: 2px 2px 0 0 #292828;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.buttonWrap {
+
+}
+
+.title {
+  text-align: center;
+
+  margin-top: 20px;
+
+  font-size: 24px;
+  font-weight: bold;
+  font-family: "Blur";
+
+  line-height: 32px;
+  letter-spacing: 1px;
+}
+
+.caption {
+  font-size: 16px;
+  margin: 20px 0;
+}
+
+.formGroup {
+  width: 100%;
+
+  margin: 5px 0;
+
+  display: flex;
+  align-items: center;
+}
+
+.formInput {
+  width: 95%;
+
+  margin: 0 auto;
+  padding: 15px;
+
+  border: 1px solid #1B1D22;
+  border-radius: 8px;
+  outline: none;
+
+  text-align: center;
+
+  box-shadow: 2px 2px 0 0 #292828;
+
+  font-size: 14px;
+  line-height: 14px;
+}
+
+.optionalWrap {
+  margin: 20px 0;
+}
+
+.optional {
+  font-size: 14px;
+  line-height: 14px;
+
+  letter-spacing: 0.5px;
+  text-decoration: underline;
+
+  opacity: 60%;
+  background: transparent;
+
+  color: #1B1D22;
+  cursor: pointer;
+
+  border: none;
+  outline: none;
+}
+
+.optional:hover {
+  opacity: 1;
+}
+
+.submitBtnWrap {
+  margin: 30px 0;
+
+  width: 100%;
+
+  display: flex;
+  justify-content: center;
+}
+
+.submitBtn {
+  width: 128px;
+  height: 44px;
+
+  color: #FFFFFF;
+
+  background: url("../assets/btn-bg.png") no-repeat;
+  background-position: center;
+  background-size: 100%;
+
+  outline: none;
+  border: none;
+
+  font-family: "Blur";
+  font-size: 20px;
+
+  cursor: pointer;
+  opacity: 0.6;
+}
