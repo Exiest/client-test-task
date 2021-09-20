@@ -1,14 +1,20 @@
+/* eslint-disable sort-keys */
 import { User } from "../../global/shared"
 import Types from "./auth.types"
 
-interface LoginActionType {
-  type: Types.LOGIN
+type LoginPayload = {
+  token: string
   user: User
 }
 
-export const login = (user: User): LoginActionType => ({
+interface LoginActionType {
+  type: Types.LOGIN
+  payload: LoginPayload
+}
+
+export const login = (payload: LoginPayload): LoginActionType => ({
   type: Types.LOGIN,
-  user,
+  payload,
 })
 
 interface LogoutActionType {

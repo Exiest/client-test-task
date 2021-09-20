@@ -118,6 +118,12 @@
   font-family: "Blur";
   font-size: 20px;
 
-  cursor: pointer;
+  cursor: not-allowed;
+
   opacity: 0.6;
+}
+
+.submitBtnReady {
+  opacity: 1;
+  cursor: pointer;
 }

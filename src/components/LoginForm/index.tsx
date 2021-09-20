@@ -1,52 +1,35 @@
-import { useForm } from "react-hook-form"
+import { useMutation } from "@apollo/client"
+import { useCallback, useEffect } from "react"
+import { Redirect } from "react-router-dom"
 
-import styles from "./styles/styles.module.css"
+import { User } from "../../global/shared"
+import { LOGIN_MUTATION } from "../../graphql/mutations/auth"
+import { authActions, authSelectors } from "../../store/auth"
+import { useTypedDispatch, useTypedSelector } from "../../store/hooks"
+import LoginForm, { UserData } from "./LoginForm"
 
-interface InitialValues {
-  username: string
-  password: string
+interface LoginSuccessData {
+  token: string
+  user: User
 }
 
-const LoginForm = () => {
-  const { register, handleSubmit } = useForm<InitialValues>()
+const LoginFormContainer: React.FC = () => {
+  const [login, { data, ...rest }] = useMutation<LoginSuccessData>(LOGIN_MUTATION)
+  const dispatch = useTypedDispatch()
+  const hasAuth = useTypedSelector(authSelectors.getAuth)
 
-  const onSubmit = handleSubmit((data) => {
-    console.log(data)
-  })
-
-  return (
-    <form onSubmit={onSubmit} className={styles.wrap}>
-      <div className={styles.formBody}>
-        <h2 className={styles.title}>Welcome back!</h2>
-        <p className={styles.caption}>Log in using your username or phone number</p>
-        <div className={styles.formGroup}>
-          <input
-            className={styles.formInput}
-            id="username"
-            {...register("username")}
-            placeholder="Username"
-          />
-        </div>
-        <div className={styles.formGroup}>
-          <input
-            className={styles.formInput}
-            id="password"
-            type="password"
-            {...register("password")}
-            placeholder="Password"
-          />
-        </div>
-        <div className={styles.optionalWrap}>
-          <button type="button" className={styles.optional}>
-            Forgot password
-          </button>
-        </div>
-      </div>
-      <div className={styles.submitBtnWrap}>
-        <button className={styles.submitBtn}>Log in</button>
-      </div>
-    </form>
+  const makeLoginRequest = useCallback(
+    (payload: UserData) => login({ variables: { ...payload } }),
+    [login],
   )
+
+  useEffect(() => {
+    if (data) {
+      dispatch(authActions.login(data))
+    }
+  }, [data])
+
+  return !hasAuth ? <LoginForm onLogin={makeLoginRequest} {...rest} /> : <Redirect to="/profile" />
 }
 
-export default LoginForm
+export default LoginFormContainer
